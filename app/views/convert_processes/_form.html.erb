@@ -1,0 +1,27 @@
+<%= form_with(model: convert_process, local: true) do |form| %>
+  <% if convert_process.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(convert_process.errors.count, "error") %> prohibited this processo from being saved:</h2>
+
+      <ul>
+      <% convert_process.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-field">
+    <%= form.label :url %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div class="input-field">
+    <%= form.label :format %>
+    <%= form.text_field :format %>
+  </div>
+
+  <div class="input-field">
+    <%= form.submit 'Criar', class: 'btn' %>
+  </div>
+<% end %>

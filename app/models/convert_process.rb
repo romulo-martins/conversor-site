@@ -1,0 +1,2 @@
+class ConvertProcess < ApplicationRecord
+end
