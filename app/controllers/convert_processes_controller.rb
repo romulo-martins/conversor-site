@@ -13,7 +13,9 @@ class ConvertProcessesController < ApplicationController
   
     def create
       @convert_process = ConvertProcess.new(
-        convert_process_params.merge(status: 'Iniciando')
+        convert_process_params.merge(
+          status: ConvertProcessStatus::STARTING
+        )
       )
       if @convert_process.save
         ConvertProcessorWorker.perform_async(@convert_process.id)
@@ -25,16 +27,22 @@ class ConvertProcessesController < ApplicationController
     end
   
     def destroy
+      if @convert_process.file.attachment
+        # TODO: horrivel, refatorar isso
+        system("rm data/#{@convert_process.file.filename}") 
+        @convert_process.file.purge 
+      end  
       @convert_process.destroy
-      redirect_to convert_process_url, notice: 'Processo removido com sucesso.'
+      redirect_to convert_processes_path, notice: 'Processo removido com sucesso.'
     end
   
     private
-      def set_convert_process
-        @convert_process = ConvertProcess.find(params[:id])
-      end
+      
+    def set_convert_process
+      @convert_process = ConvertProcess.find(params[:id])
+    end
   
-      def convert_process_params
-        params.require(:convert_process).permit(:url, :format)
-      end
+    def convert_process_params
+      params.require(:convert_process).permit(:url, :format)
+    end
 end

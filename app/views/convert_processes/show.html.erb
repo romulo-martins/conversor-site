@@ -15,4 +15,11 @@
   <%= @convert_process.status %>
 </p>
 
+<p>
+  <% if @convert_process.status == ConvertProcessStatus::FINISHED %>
+    <strong>Download:</strong>
+    <%= link_to 'link', rails_blob_path(@convert_process.file) %>
+  <% end %>
+</p>
+
 <%= link_to 'Back', convert_processes_path %>

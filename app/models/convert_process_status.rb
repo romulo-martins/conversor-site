@@ -1,5 +1,5 @@
 module ConvertProcessStatus
-    STARTING = 'Iniciado'
+    STARTING = 'Iniciando'
     RUNNING = 'Executando'
     CANCELED = 'Cancelado'
     FINISHED = 'Finalizado' 
