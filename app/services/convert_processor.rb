@@ -18,14 +18,15 @@ class ConvertProcessor
     private 
 
     def convert process
+        system("mkdir data")
+        system("mkdir data/temp")
+        
         name, url, extension = process.name, process.url, process.format
         puts("Download from #{name} ...")
-        system("mkdir temp")
-        system("wget -O temp/#{name}.html #{url}")
+        system("wget -O data/temp/#{name}.html #{url}")
 
         puts("Converting file #{name} ...")
-        system("mkdir data")
-        system("pandoc -o data/#{name}.#{extension} temp/#{name}.html")
+        system("pandoc -o data/#{name}.#{extension} data/temp/#{name}.html")
 
         process.file.attach(
             io: File.open("data/#{name}.#{extension}"), 
@@ -33,7 +34,7 @@ class ConvertProcessor
             content_type: "text/#{extension}"
         )
 
-        system("rm temp/#{name}.html")
+        system("rm data/temp/#{name}.html")
         process.update_attributes(status: ConvertProcessStatus::FINISHED)
     end
 

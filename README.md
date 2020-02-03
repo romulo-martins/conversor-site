@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Para rodar o projeto com docker:
+```
+make start
+```
 
-Things you may want to cover:
+Para criar o banco de dados:
+```
+make db-create
+```
 
-* Ruby version
+## Resolução de problemas
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Se tiver problemas com docker tente setar o host:
+```
+export DOCKER_HOST="tcp://0.0.0.0:2375"
+```
