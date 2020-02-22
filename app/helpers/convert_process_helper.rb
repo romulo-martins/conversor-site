@@ -1,6 +1,5 @@
 module ConvertProcessHelper
     def formats_for_select
-        # ['epub', 'mobi', 'pdf']
-        ['epub'] 
+        ['epub', 'mobi', 'pdf'] 
     end
 end

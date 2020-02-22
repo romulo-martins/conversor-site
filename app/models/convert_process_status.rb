@@ -2,7 +2,8 @@ module ConvertProcessStatus
     STARTING = 'Iniciando'
     RUNNING = 'Executando'
     CANCELED = 'Cancelado'
-    FINISHED = 'Finalizado' 
+    FINISHED = 'Finalizado'
+    ERROR = 'Erro'
     
-    ALL = [STARTING, RUNNING, CANCELED, FINISHED]
+    ALL = [STARTING, RUNNING, CANCELED, FINISHED, ERROR]
 end

@@ -15,6 +15,7 @@ RUN gem install bundler && bundle install
 
 COPY . .
 
+# Compila os assets
 RUN bundle exec rake assets:precompile
 
 # Limpa cache e tmp, diminuindo tamanho da imagem e ajudando no cache
